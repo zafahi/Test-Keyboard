@@ -1,0 +1,13 @@
+name: Deploy Keyboard Tester
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test HTML exists
+        run: ls index.html
