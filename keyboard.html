@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keyboard Tester</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .tester {
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .key {
+      font-size: 80px;
+      font-weight: bold;
+      color: #007bff;
+      margin: 20px auto;
+      height: 100px;
+      width: 100%;
+      line-height: 100px;
+      overflow: hidden;      
+      white-space: nowrap;    
+      text-overflow: ellipsis; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      word-break: break-all;
+    }
+
+    .small {
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="tester">
+    <h2>Keyboard Tester</h2>
+    <div class="key" id="key">-</div>
+    <div class="small">Tekan tombol di keyboard kamu</div>
+  </div>
+
+  <script>
+    const keyDiv = document.getElementById('key');
+
+    document.addEventListener('keydown', function(e) {
+      let keyName = e.key === ' ' ? 'SPACE' : e.key.toUpperCase();
+      keyDiv.textContent = keyName;
+
+      if (keyName.length > 8) {
+        keyDiv.style.fontSize = "40px";
+      } else if (keyName.length > 4) {
+        keyDiv.style.fontSize = "60px";
+      } else {
+        keyDiv.style.fontSize = "80px";
+      }
+    });
+  </script>
+</body>
+</html>
