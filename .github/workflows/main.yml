@@ -1,28 +1,13 @@
-mkdir Test-Keyboard
-cd Test-Keyboard
-code keyboard.html (bisa nano namun powershellnya ga bisa)
-git init
-git add .
-git commit -m "Initial commit - tambah keyboard/html"
-git branch -M main
-git remote add origin https://github.com/zafahi/Test-Keyboard
-git push -u origin main
-git checkout -b feature-enhancement
-git commit -m "Update style dan key font"
-git push origin feature-enhancement
-code .github/workflows/deploy.yml
-git add .
-git commit -m "Add GitHub Actions workflow"
-git push
-code Dockerfile (bisa nano namun powershellnya ga bisa)
-docker build -t keyboard-tester .
-docker run -d -p 8000:8000 keyboard-tester
-- kalo error cek 
-  wsl --list --verbose
-  docker version
-  docker info
-- apabila error server
-  netstat -ano | findstr :8000
-  taskkill /PID 1234 /F (PID `1234` ganti ke port yang dipake) untuk deactivate
-- cek docker
-  docker ps
+name: Deploy Keyboard Tester
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test HTML exists
+        run: ls index.html
